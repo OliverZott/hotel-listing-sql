@@ -11,11 +11,16 @@
 - Database setup/config
 	- Entity Framework Core
 	- Driver package
-
+- Scaffold API
 
 
 ## Database
 - Install packages
-- Create DBContext
+- ConnectionString / DBContext / Service registration
 - Create Entities
-- Add Migration `add-migration <InitialMigration>`
+- **Add Migration** and **Update Database**
+	- `add-migration <InitialMigration>`
+	- `update-database`
+
+## Scaffold API
+- start with entity with fewest Foreign keys !!
