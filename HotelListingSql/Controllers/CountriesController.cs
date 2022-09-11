@@ -23,7 +23,8 @@ namespace HotelListingSql.Controllers
             {
                 return NotFound();
             }
-            return await _context.Countries.ToListAsync();
+            var countries = await _context.Countries.ToListAsync();
+            return Ok(countries);
         }
 
         // GET: api/Countries/5
@@ -41,6 +42,7 @@ namespace HotelListingSql.Controllers
                 return NotFound();
             }
 
+            // no Ok() needed ... more explicit nowadays
             return country;
         }
 
@@ -51,7 +53,7 @@ namespace HotelListingSql.Controllers
         {
             if (id != country.Id)
             {
-                return BadRequest();
+                return BadRequest("Invalid Record Id");
             }
 
             _context.Entry(country).State = EntityState.Modified;
@@ -68,7 +70,7 @@ namespace HotelListingSql.Controllers
                 }
                 else
                 {
-                    throw;
+                    throw;  // not wanted, until you really want to kill runtime of program
                 }
             }
 
