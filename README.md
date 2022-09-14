@@ -26,8 +26,13 @@ dotnet run
 
 Endpoints:
 
-- Serilog: <http://localhost:5341/#/events>
+- Seq: <http://localhost:5341/#/events>
 - App: <https://localhost:7170/swagger/index.html>
+
+## Debugging
+If debugging not possible:
+
+- Select "Enable native code debugging" [Link](https://docs.microsoft.com/en-us/visualstudio/debugger/how-to-enable-debugging-for-aspnet-applications?view=vs-2022)
 
 ## Steps
 
@@ -46,6 +51,7 @@ Endpoints:
 - Refactor:
   - Repository Pattern / Unit Of Work (separate context from controller)
   - DTO (separate entities from andpoint)
+
 
 ## Serilog
 
