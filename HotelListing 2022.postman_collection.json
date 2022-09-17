@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "e550ff16-3e6f-4350-9636-7f76e27ef4df",
+		"name": "HotelListing 2022",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12222368"
+	},
+	"item": [
+		{
+			"name": "Exception Tesing",
+			"item": [
+				{
+					"name": "Error response - unknown exception",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7269/api/Hotel/fgh",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7269",
+							"path": [
+								"api",
+								"Hotel",
+								"fgh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Error response - not found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7269/api/Hotel/62863587375dcb423017816e",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7269",
+							"path": [
+								"api",
+								"Hotel",
+								"62863587375dcb423017816e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Error response - various (exc - exc4)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7269/api/Hotel/exc",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7269",
+							"path": [
+								"api",
+								"Hotel",
+								"exc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Country",
+			"item": [
+				{
+					"name": "Create new country",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"name\",\r\n  \"shortName\": \"short_name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7170/api/Countries",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update country by Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Id\": 6,\r\n  \"name\": \"Narnia\",\r\n  \"shortName\": \"NAR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7170/api/Countries/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove country by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"string\",\r\n  \"shortName\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7170/api/Countries/9",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all countries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7170/api/Countries",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all countries",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7170/api/Countries",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7170",
+									"path": [
+										"api",
+										"Countries"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Sep 2022 10:14:12 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Austria\",\n        \"shortName\": \"AT\",\n        \"hotels\": null\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Germany\",\n        \"shortName\": \"DE\",\n        \"hotels\": null\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Barbados\",\n        \"shortName\": \"BB\",\n        \"hotels\": null\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get country by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7170/api/Countries/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

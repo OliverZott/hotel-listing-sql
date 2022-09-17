@@ -125,3 +125,7 @@ Show databases, connect to database and show tables/info/users/query:
 \du
 SELECT * FROM "<tableName>";
 ```
+
+## TODO
+
+- remove unnecessary/specific schemas from swagger 

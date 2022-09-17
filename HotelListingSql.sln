@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4B543996-0F1A-497B-BB4D-6D7D1162EA34}"
 	ProjectSection(SolutionItems) = preProject
 		CheckAndStartService.ps1 = CheckAndStartService.ps1
+		HotelListing 2022.postman_collection.json = HotelListing 2022.postman_collection.json
 		README.md = README.md
 	EndProjectSection
 EndProject
