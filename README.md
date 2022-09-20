@@ -5,6 +5,7 @@
 - EF Core
 - Serilog / Seq
 - Automapper
+- Security - Identity (EF Core)
 
 - Pattern:
   - Repository Pattern / Unit Of Work
@@ -16,6 +17,12 @@ Check if Seq and PostgreSQL services are running
 
 ```shell
 .\CheckAndStartService.ps1
+```
+
+Update/Create Database (in PackageManagerConsole)
+
+```shell
+Update-Database
 ```
 
 Start app
@@ -54,6 +61,10 @@ If debugging not possible:
 - Refactor:
   - Repository Pattern / Unit Of Work (separate context from controller)
   - DTO (separate entities from andpoint)
+- Security
+  - Identity EF Core
+
+# ---
 
 ## Serilog
 
