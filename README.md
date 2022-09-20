@@ -30,6 +30,7 @@ Endpoints:
 - App: <https://localhost:7170/swagger/index.html>
 
 ## Debugging
+
 If debugging not possible:
 
 - Select "Enable native code debugging" [Link](https://docs.microsoft.com/en-us/visualstudio/debugger/how-to-enable-debugging-for-aspnet-applications?view=vs-2022)
@@ -48,10 +49,11 @@ If debugging not possible:
   - **Inject** service in Controller
   - **Logging** and **ExceptionHandling** in Service/Controller
 - **Scaffold API-Controller**
+  - add `API Controller with actions, using Entity Framework`
+  - select Entity class (e.g. Hotel or Country -- NOT Dtos!)
 - Refactor:
   - Repository Pattern / Unit Of Work (separate context from controller)
   - DTO (separate entities from andpoint)
-
 
 ## Serilog
 
@@ -128,4 +130,4 @@ SELECT * FROM "<tableName>";
 
 ## TODO
 
-- remove unnecessary/specific schemas from swagger 
+- remove unnecessary/specific schemas from swagger

@@ -251,6 +251,134 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Hotel",
+			"item": [
+				{
+					"name": "Get Hotel by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7170/api/Hotels/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Hotels",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Hotel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7170/api/Hotels/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Hotels",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Hotel by Id Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Hotel König\",\r\n  \"address\": \"Glemmtaler Landesstraße 278, 5753 Saalbach\",\r\n  \"rating\": 4,\r\n  \"countryId\": 1,\r\n  \"id\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7170/api/Hotels/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Hotels",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Hote",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Hotel König\",\r\n  \"address\": \"Saalbach\",\r\n  \"rating\": 3,\r\n  \"countryId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7170/api/Hotels/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Hotels",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Hotes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7170/api/Hotels/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Hotels",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
