@@ -2,6 +2,7 @@
 using HotelListingSql.Data;
 using HotelListingSql.DTOs.Country;
 using HotelListingSql.DTOs.Hotel;
+using HotelListingSql.DTOs.User;
 
 namespace HotelListingSql.Configurations;
 
@@ -18,5 +19,7 @@ public class AutoMapperConfig : Profile
         CreateMap<Hotel, GetHotelDetailDto>().ReverseMap();
         CreateMap<Hotel, GetHotelDto>().ReverseMap();
         CreateMap<Hotel, UpdateHotelDto>().ReverseMap();
+
+        CreateMap<ApiUser, ApiUserDto>().ReverseMap();
     }
 }
