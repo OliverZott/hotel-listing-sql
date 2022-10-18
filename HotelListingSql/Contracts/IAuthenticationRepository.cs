@@ -6,5 +6,5 @@ namespace HotelListingSql.Contracts;
 public interface IAuthenticationRepository
 {
     Task<IEnumerable<IdentityError>> Register(ApiUserDto apiUserDto);
-    Task<bool> Login(LoginDto loginDto);
+    Task<AuthResponseDto?> Login(LoginDto loginDto);
 }

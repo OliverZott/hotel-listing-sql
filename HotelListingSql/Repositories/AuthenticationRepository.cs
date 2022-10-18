@@ -3,6 +3,11 @@ using HotelListingSql.Contracts;
 using HotelListingSql.Data;
 using HotelListingSql.DTOs.User;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace HotelListingSql.Repositories;
 
@@ -10,11 +15,13 @@ public class AuthenticationRepository : IAuthenticationRepository
 {
     private readonly IMapper _mapper;
     private readonly UserManager<ApiUser> _userManager;
+    private readonly IConfiguration _configuration;
 
-    public AuthenticationRepository(IMapper mapper, UserManager<ApiUser> userManager)
+    public AuthenticationRepository(IMapper mapper, UserManager<ApiUser> userManager, IConfiguration configuration)
     {
         _mapper = mapper;
         _userManager = userManager;
+        _configuration = configuration;
     }
 
     public async Task<IEnumerable<IdentityError>> Register(ApiUserDto apiUserDto)
@@ -31,16 +38,51 @@ public class AuthenticationRepository : IAuthenticationRepository
         return result.Errors;
     }
 
-    public async Task<bool> Login(LoginDto loginDto)
+    public async Task<AuthResponseDto?> Login(LoginDto loginDto)
     {
-        try
+        var user = await _userManager.FindByEmailAsync(loginDto.Email);
+        var isValidUser = await _userManager.CheckPasswordAsync(user, loginDto.Password);
+
+        if (user == null || isValidUser == false)
         {
-            var user = await _userManager.FindByEmailAsync(loginDto.Email);
-            return await _userManager.CheckPasswordAsync(user, loginDto.Password);
+            return null;
         }
-        catch (Exception e)
+        var token = await GenerateToken(user);
+        return new AuthResponseDto
         {
-            return false;
-        }
+            Token = token,
+            UserId = user.Id
+        };
+    }
+
+    public async Task<string> GenerateToken(ApiUser apiUser)
+    {
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));
+
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+        var roles = await _userManager.GetRolesAsync(apiUser);
+        var roleClaims = roles.Select(x => new Claim(ClaimTypes.Role, x)).ToList();
+
+        var userClaims = await _userManager.GetClaimsAsync(apiUser);
+
+        var claims = new List<Claim>
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, apiUser.Email),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(JwtRegisteredClaimNames.Email, apiUser.Email),
+            new Claim("uid", apiUser.Id)
+        }.Union(userClaims).Union(roleClaims);
+
+        var token = new JwtSecurityToken(
+            issuer: _configuration["JwtSettings:Issuer"],
+            audience: _configuration["JwtSettings:Audience"],
+            claims: claims,
+            expires: DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["JwtSettings:DurationInMinutes"])),
+            signingCredentials: credentials
+        );
+
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

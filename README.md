@@ -139,6 +139,11 @@ Show databases, connect to database and show tables/info/users/query:
 SELECT * FROM "<tableName>";
 ```
 
+## Security
+
+- 
+- Check Token at https://jwt.io/
+
 ## TODO
 
 - remove unnecessary/specific schemas from swagger

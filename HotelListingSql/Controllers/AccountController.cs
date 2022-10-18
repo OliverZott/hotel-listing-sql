@@ -46,13 +46,13 @@ public class AccountController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult> Login([FromBody] LoginDto loginDto)
     {
-        var isValidUser = await _authenticationRepository.Login(loginDto);
+        var authResponseDto = await _authenticationRepository.Login(loginDto);
 
-        if (!isValidUser)
+        if (authResponseDto is null)
         {
             return Unauthorized();
         }
 
-        return Ok();
+        return Ok(authResponseDto);
     }
 }
