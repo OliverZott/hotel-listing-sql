@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "e550ff16-3e6f-4350-9636-7f76e27ef4df",
 		"name": "HotelListing 2022",
+		"description": "# Sample Asp.Net Project\n\nCheck generated User Token at: [JSON Web Tokens - jwt.io](https://jwt.io/)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12222368"
 	},
@@ -101,36 +102,6 @@
 							"path": [
 								"api",
 								"Countries"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update country by Id",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"Id\": 6,\r\n  \"name\": \"Narnia\",\r\n  \"shortName\": \"NAR\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7170/api/Countries/6",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7170",
-							"path": [
-								"api",
-								"Countries",
-								"6"
 							]
 						}
 					},
@@ -249,6 +220,46 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update country by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwianRpIjoiMzE0NDZkZDMtMTgxNS00ODNhLWExNzUtNGQ5MzhiY2M5YjBkIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwidWlkIjoiYTFlOGRiNjAtNjFiMC00YmIzLWIyNTQtZjNmMWZjNTJhOTBkIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTY2NjA3MzY2NSwiaXNzIjoiSG90ZWxMaXN0aW5nQVBJIiwiYXVkIjoiSG90ZWxMaXN0aW5nQVBJQ2xpZW50In0.RaMPzDfdsDwq0SGkUTaUYT-B6J9dRJTKJA5b87gFMdI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Id\": 6,\r\n  \"name\": \"Narnia\",\r\n  \"shortName\": \"NA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7170/api/Countries/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries",
+								"6"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -282,7 +293,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7170/api/Hotels/3",
+							"raw": "https://localhost:7170/api/Hotels/6",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -291,7 +302,7 @@
 							"path": [
 								"api",
 								"Hotels",
-								"3"
+								"6"
 							]
 						}
 					},
@@ -334,7 +345,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Hotel König\",\r\n  \"address\": \"Saalbach\",\r\n  \"rating\": 3,\r\n  \"countryId\": 1\r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"\",\r\n  \"address\": \"Saalbach2\",\r\n  \"rating\": 15,\r\n  \"countryId\": 2\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -379,6 +390,441 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Max\",\r\n  \"lastName\": \"Power\",\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"P@ssw0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Account/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Account",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"P@ssw0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Account/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TEST - Basic Authentication",
+			"item": [
+				{
+					"name": "Get all countries - SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET request\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7170/api/Countries",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update country - FAIL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Unauthorized PUT request\", function() {\r",
+									"    // pm.expect(pm.response.code).to.be(401);\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Id\": 6,\r\n  \"name\": \"Narnia\",\r\n  \"shortName\": \"NAR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7170/api/Countries/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful User Login\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token\", jsonData.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"P@ssw0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Account/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update country - SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Authorized PUT request\", function() {\r",
+									"    // pm.expect(pm.response.code).to.be(401);\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Id\": 6,\r\n  \"name\": \"Narnia\",\r\n  \"shortName\": \"NAR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7170/api/Countries/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete country - FORBIDDEN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Unauthorized DELETE request\", function() {\r",
+									"    // pm.expect(pm.response.code).to.be(401);\r",
+									"    pm.response.to.have.status(403);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7170/api/Countries/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login ADMIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful User Login\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token\", jsonData.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@example.com\",\r\n  \"password\": \"P@ssw0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Account/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Test Country",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"name\",\r\n  \"shortName\": \"short_name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7170/api/Countries",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete country - SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Authorized DELETE request\", function() {\r",
+									"    // pm.expect(pm.response.code).to.be(401);\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7170/api/Countries/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"Countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://localhost:7170/api",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": ""
 		}
 	]
 }

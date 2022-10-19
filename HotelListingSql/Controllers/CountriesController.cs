@@ -2,6 +2,7 @@
 using HotelListingSql.Contracts;
 using HotelListingSql.Data;
 using HotelListingSql.DTOs.Country;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ namespace HotelListingSql.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]  // For authorization on whole endpoint
     public class CountriesController : ControllerBase
     {
         private readonly ICountriesRepository _countriesRepository;
@@ -54,6 +56,7 @@ namespace HotelListingSql.Controllers
         // PUT: api/Countries/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]  // Authorization specific request
         public async Task<IActionResult> PutCountry(int id, UpdateCountryDto updateCountryDto)
         {
             if (id != updateCountryDto.Id)
@@ -97,6 +100,7 @@ namespace HotelListingSql.Controllers
 
         // DELETE: api/Countries/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]  // Authorization request for specific ROLE
         public async Task<IActionResult> DeleteCountry(int id)
         {
             var country = await _countriesRepository.GetAsync(id);
