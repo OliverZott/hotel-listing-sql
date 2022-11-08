@@ -55,4 +55,24 @@ public class AccountController : ControllerBase
 
         return Ok(authResponseDto);
     }
+
+
+    // POST: api/Account/refreshtoken
+    [HttpPost]
+    [Route("refreshtoken")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult> RefreshToken([FromBody] AuthResponseDto request)
+    {
+        var authResponseDto = await _authenticationRepository.VerifyRefreshToken(request);
+
+        if (authResponseDto is null)
+        {
+            return Unauthorized();
+        }
+
+        return Ok(authResponseDto);
+    }
+
 }
