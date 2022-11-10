@@ -2,6 +2,7 @@
 using HotelListingSql.Contracts;
 using HotelListingSql.Data;
 using HotelListingSql.DTOs.Country;
+using HotelListingSql.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -44,7 +45,7 @@ namespace HotelListingSql.Controllers
 
             if (country == null)
             {
-                return NotFound();
+                throw new MyNotFoundException(nameof(GetCountry), id);
             }
 
             var countryDto = _mapper.Map<GetCountryDetailsDto>(country);

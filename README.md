@@ -6,6 +6,8 @@
 - Serilog / Seq
 - Automapper
 - Security - Identity (EF Core)
+- Logging
+- Global Exception Handling
 
 - Pattern:
   - Repository Pattern / Unit Of Work
@@ -90,9 +92,6 @@ If debugging not possible:
 
 - start with entity with fewest Foreign keys!
 
-## Swagger
-
-- 
 
 ## Environments
 
@@ -144,6 +143,19 @@ SELECT * FROM "<tableName>";
 - Check Token at https://jwt.io/
 - Customize response messages:
   - https://referbruv.com/blog/building-custom-responses-for-unauthorized-requests-in-aspnet-core/
+
+## Logging
+
+- Mainly in case of errors
+- Client must not see Backend implementation specifics
+
+## Global Exception Handling
+
+- Throw custom exceptions
+- Hijack http requests and handle exceptions 
+	- logging
+	- http repsonses
+- Using middleware, registered in DI Container
 
 ## TODO
 
