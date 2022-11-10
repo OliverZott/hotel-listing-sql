@@ -92,7 +92,7 @@ If debugging not possible:
 
 ## Swagger
 
-- where are swagger files?
+- 
 
 ## Environments
 
@@ -141,8 +141,9 @@ SELECT * FROM "<tableName>";
 
 ## Security
 
-- 
 - Check Token at https://jwt.io/
+- Customize response messages:
+  - https://referbruv.com/blog/building-custom-responses-for-unauthorized-requests-in-aspnet-core/
 
 ## TODO
 

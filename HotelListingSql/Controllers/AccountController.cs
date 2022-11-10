@@ -9,10 +9,12 @@ namespace HotelListingSql.Controllers;
 public class AccountController : ControllerBase
 {
     private readonly IAuthenticationRepository _authenticationRepository;
+    private readonly ILogger<AccountController> _logger;
 
-    public AccountController(IAuthenticationRepository authenticationRepository)
+    public AccountController(IAuthenticationRepository authenticationRepository, ILogger<AccountController> logger)
     {
         _authenticationRepository = authenticationRepository;
+        _logger = logger;
     }
 
     // POST: api/Account/register
@@ -23,19 +25,31 @@ public class AccountController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult> Register([FromBody] ApiUserDto apiUserDto)
     {
-        var errors = await _authenticationRepository.Register(apiUserDto);
+        _logger.LogInformation($"Registration attempt for {apiUserDto.Email}");
 
-        if (errors.Any())
+        try
         {
-            foreach (var error in errors)
+            throw new NotImplementedException();  // testing purpose
+            var errors = await _authenticationRepository.Register(apiUserDto);
+
+            if (errors.Any())
             {
-                ModelState.AddModelError(error.Code, error.Description);
+                foreach (var error in errors)
+                {
+                    ModelState.AddModelError(error.Code, error.Description);
+                }
+
+                return BadRequest(ModelState);
             }
 
-            return BadRequest(ModelState);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Something went wrong in {nameof(Register)} - User registration attempt for {apiUserDto.Email}");
+            return Problem($"Something went wrong in {nameof(Register)}, please contact support.", statusCode: 500);
         }
 
-        return Ok();
     }
 
     // POST: api/Account/login

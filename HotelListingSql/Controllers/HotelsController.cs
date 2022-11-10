@@ -2,6 +2,7 @@
 using HotelListingSql.Contracts;
 using HotelListingSql.Data;
 using HotelListingSql.DTOs.Hotel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -89,6 +90,7 @@ namespace HotelListingSql.Controllers
         }
 
         // DELETE: api/Hotels/5
+        [Authorize(Roles = "Administrator")]  // Authorization request for specific ROLE
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotel(int id)
         {
