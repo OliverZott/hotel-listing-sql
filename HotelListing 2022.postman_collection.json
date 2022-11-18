@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "e550ff16-3e6f-4350-9636-7f76e27ef4df",
+		"_postman_id": "0a0d75fc-7c82-4321-8364-1e8732207533",
 		"name": "HotelListing 2022",
 		"description": "# Sample Asp.Net Project\n\nCheck generated User Token at: [JSON Web Tokens - jwt.io](https://jwt.io/)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "12222368"
+		"_exporter_id": "19326149"
 	},
 	"item": [
 		{
@@ -260,6 +260,75 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Country V2",
+			"item": [
+				{
+					"name": "Get all countries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7170/api/v2.0/Countries",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7170",
+							"path": [
+								"api",
+								"v2.0",
+								"Countries"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all countries",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7170/api/Countries",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7170",
+									"path": [
+										"api",
+										"Countries"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Sep 2022 10:14:12 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Austria\",\n        \"shortName\": \"AT\",\n        \"hotels\": null\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Germany\",\n        \"shortName\": \"DE\",\n        \"hotels\": null\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Barbados\",\n        \"shortName\": \"BB\",\n        \"hotels\": null\n    }\n]"
+						}
+					]
 				}
 			]
 		},

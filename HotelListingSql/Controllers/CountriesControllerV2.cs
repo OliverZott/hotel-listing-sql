@@ -9,17 +9,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HotelListingSql.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/countries")]
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     //[Authorize]  // For authorization on whole endpoint
-    public class CountriesController : ControllerBase
+    public class CountriesControllerV2 : ControllerBase
     {
         private readonly ICountriesRepository _countriesRepository;
-        private readonly ILogger<CountriesController> _logger;
+        private readonly ILogger<CountriesControllerV2> _logger;
         private readonly IMapper _mapper;
 
-        public CountriesController(ICountriesRepository countriesRepository, ILogger<CountriesController> logger, IMapper mapper)
+        public CountriesControllerV2(ICountriesRepository countriesRepository, ILogger<CountriesControllerV2> logger, IMapper mapper)
         {
             _countriesRepository = countriesRepository;
             _mapper = mapper;

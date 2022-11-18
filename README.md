@@ -92,7 +92,6 @@ If debugging not possible:
 
 - start with entity with fewest Foreign keys!
 
-
 ## Environments
 
 - <https://www.youtube.com/watch?v=_2_qksdQKCE>
@@ -140,9 +139,9 @@ SELECT * FROM "<tableName>";
 
 ## Security
 
-- Check Token at https://jwt.io/
+- Check Token at <https://jwt.io/>
 - Customize response messages:
-  - https://referbruv.com/blog/building-custom-responses-for-unauthorized-requests-in-aspnet-core/
+  - <https://referbruv.com/blog/building-custom-responses-for-unauthorized-requests-in-aspnet-core/>
 
 ## Logging
 
@@ -152,10 +151,20 @@ SELECT * FROM "<tableName>";
 ## Global Exception Handling
 
 - Throw custom exceptions
-- Hijack http requests and handle exceptions 
-	- logging
-	- http repsonses
+- Hijack http requests and handle exceptions
+  - logging
+  - http repsonses
 - Using middleware, registered in DI Container
+
+## API Versioning
+
+- 3 ways:
+  - request param in url
+  - header param
+  - part of api url
+- `Microsoft.AspNetCore.Mvc.Versioning`
+- `Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer`
+- Service configuration in `Program.cs`
 
 ## TODO
 
