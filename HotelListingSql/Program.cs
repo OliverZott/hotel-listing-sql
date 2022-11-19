@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
 using Serilog;
 using System.Text;
 
@@ -59,7 +60,7 @@ builder.Services.AddVersionedApiExplorer(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
-// context ... things you can access through the builder ?!
+// Context ... things you can access through the builder ?!
 builder.Host.UseSerilog((context, configuration) => configuration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
@@ -88,6 +89,13 @@ builder.Services.AddAuthentication(o =>
     };
 });
 
+builder.Services.AddResponseCaching(options =>
+    {
+        options.MaximumBodySize = 1024;
+        options.UseCaseSensitivePaths = true;
+    }
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -97,11 +105,28 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Register Middleware Code
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
 app.UseCors("MyCorsPolicy");
+
+app.UseResponseCaching();
+
+// Add Middleware Code directly
+app.Use(async (context, next) =>
+{
+    context.Response.GetTypedHeaders().CacheControl =  // headers indicating its from cache instead fresh data
+        new CacheControlHeaderValue()
+        {
+            Public = true,
+            MaxAge = TimeSpan.FromSeconds(10)
+        };
+    context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =  // Cache response may vary for type of repsonse data
+        new string[] { "Accept-Encoding" };
+    await next();
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
