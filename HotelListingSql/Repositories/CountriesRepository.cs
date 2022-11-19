@@ -1,4 +1,5 @@
-﻿using HotelListingSql.Contracts;
+﻿using AutoMapper;
+using HotelListingSql.Contracts;
 using HotelListingSql.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,10 +8,12 @@ namespace HotelListingSql.Repositories;
 public class CountriesRepository : GenericRepository<Country>, ICountriesRepository
 {
     private readonly HotelListingDbContext _context;
+    private readonly IMapper _mapper;
 
-    public CountriesRepository(HotelListingDbContext context) : base(context)
+    public CountriesRepository(HotelListingDbContext context, IMapper mapper) : base(context, mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     public async Task<Country?> GetDetails(int id)

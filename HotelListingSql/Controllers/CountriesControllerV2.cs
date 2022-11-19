@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HotelListingSql.Contracts;
 using HotelListingSql.Data;
+using HotelListingSql.DTOs;
 using HotelListingSql.DTOs.Country;
 using HotelListingSql.Exceptions;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,7 @@ namespace HotelListingSql.Controllers
 {
     [Route("api/v{version:apiVersion}/countries")]
     [ApiController]
-    [ApiVersion("2.0")]
+    [ApiVersion("2.0", Deprecated = true)]
     //[Authorize]  // For authorization on whole endpoint
     public class CountriesControllerV2 : ControllerBase
     {
@@ -27,14 +28,24 @@ namespace HotelListingSql.Controllers
             _logger.LogInformation("Countries Controller ...");
         }
 
-        // GET: api/Countries
-        [HttpGet]
+        // GET: api/Countries/GetAll
+        [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<GetCountryDto>>> GetCountries()
         {
             var countries = await _countriesRepository.GetAllAsync();
             var countriesList = _mapper.Map<List<GetCountryDto>>(countries);
             return Ok(countriesList);
         }
+
+        // GET: api/Countries/?StartIndex=0&PageSize=4&PageNumber=1
+        [HttpGet]
+        public async Task<ActionResult<PagedResults<GetCountryDto>>> GetPagedCountries([FromQuery] QueryParameters queryParameters)
+        {
+            // No mapped needed, because its mapped inside GetAllAsync !
+            var pagedCountriesResult = await _countriesRepository.GetAllAsync<GetCountryDto>(queryParameters);
+            return Ok(pagedCountriesResult);
+        }
+
 
         // GET: api/Countries/5
         [HttpGet("{id}")]
