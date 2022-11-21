@@ -29,7 +29,7 @@ public class AccountController : ControllerBase
 
         try
         {
-            throw new NotImplementedException();  // testing purpose
+            //throw new NotImplementedException();  // testing purpose
             var errors = await _authenticationRepository.Register(apiUserDto);
 
             if (errors.Any())

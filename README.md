@@ -158,6 +158,8 @@ SELECT * FROM "<tableName>";
 
 ## API Versioning
 
+Example in CountriesControlerV2
+
 - 3 ways:
   - request param in url
   - header param
@@ -165,6 +167,17 @@ SELECT * FROM "<tableName>";
 - `Microsoft.AspNetCore.Mvc.Versioning`
 - `Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer`
 - Service configuration in `Program.cs`
+
+## OData
+
+Example in CountriesControlerV2
+
+- Filter, Query, Order Controller-Responses
+
+### Query
+
+- Backend: `[EnableQuery]` at Controller
+- Request: Query Parameter `$select=`
 
 ## TODO
 

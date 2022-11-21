@@ -6,6 +6,7 @@ using HotelListingSql.DTOs.Country;
 using HotelListingSql.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelListingSql.Controllers
@@ -30,6 +31,7 @@ namespace HotelListingSql.Controllers
 
         // GET: api/Countries/GetAll
         [HttpGet("GetAll")]
+        [EnableQuery]
         public async Task<ActionResult<IEnumerable<GetCountryDto>>> GetCountries()
         {
             var countries = await _countriesRepository.GetAllAsync();
