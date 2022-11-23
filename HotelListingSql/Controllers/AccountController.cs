@@ -1,5 +1,5 @@
-﻿using HotelListingSql.Contracts;
-using HotelListingSql.DTOs.User;
+﻿using HotelListingSql.Core.Contracts;
+using HotelListingSql.Core.DTOs.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelListingSql.Controllers;

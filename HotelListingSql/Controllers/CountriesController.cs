@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using HotelListingSql.Contracts;
+using HotelListingSql.Core.Contracts;
+using HotelListingSql.Core.DTOs.Country;
+using HotelListingSql.Core.Exceptions;
 using HotelListingSql.Data;
-using HotelListingSql.DTOs.Country;
-using HotelListingSql.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
