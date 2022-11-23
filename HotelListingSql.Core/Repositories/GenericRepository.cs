@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using HotelListingSql.Core.Contracts;
 using HotelListingSql.Core.DTOs;
+using HotelListingSql.Core.Exceptions;
 using HotelListingSql.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,12 +21,13 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public async Task<T?> GetAsync(int? id)
     {
-        if (id is null)
+        var result = await _context.Set<T>().FindAsync(id);
+        if (result is null)
         {
-            return null;
+            throw new MyNotFoundException(typeof(T).Name, id.HasValue ? id : "No key provided!");
         }
 
-        return await _context.Set<T>().FindAsync(id);
+        return result;
     }
 
     public async Task<List<T>> GetAllAsync()
@@ -33,6 +35,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _context.Set<T>().ToListAsync();
     }
 
+    // More generic version with mapping! Used in CountriesControllerV2.cs - GetPagedCountries()
     public async Task<PagedResults<TResult>> GetAllAsync<TResult>(QueryParameters queryParameters)
     {
         var totalSize = await _context.Set<T>().CountAsync();
@@ -68,7 +71,13 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     public async Task DeleteAsync(int id)
     {
         var entity = await GetAsync(id);
-        if (entity != null) _context.Set<T>().Remove(entity);
+
+        if (entity == null)
+        {
+            throw new MyNotFoundException(typeof(T).Name, id);
+        }
+
+        _context.Set<T>().Remove(entity);
         await _context.SaveChangesAsync();
     }
 
